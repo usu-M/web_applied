@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScriptの練習</title>
+  </head>
+  <body>
+    <p>ページ</p>
+    <button onclick="myFunc();">Hello</button>
+    <button onclick="showDouble();">2倍を表示</button>
+    <script>
+      function myFunc() {
+        console.log("Hello");
+      }
+
+      function double(n){
+        return n * 2;
+      }
+
+      function showDouble() {
+        const result = double(21);
+        console.log(`21の2倍は ${result}`);
+      }
+    </script>
+  </body>
+</html>

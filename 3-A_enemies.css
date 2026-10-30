@@ -1,0 +1,4 @@
+.down {
+    color: #aaa;
+    text-decoration: line-through solid #aaa 1px;
+}
