@@ -15,20 +15,20 @@ function update(dt) {
 
   // 左右の壁（丸は x が中心なので、半径 r を足し引きする）
   if (x + r > canvas.width) {
-    //x = canvas.width - r;
+    x = canvas.width - r;
     vx = -vx;
   }
   if (x - r < 0) {
-    //x = r;
+    x = r;
     vx = -vx;
   }
   // 上下の壁
   if (y + r > canvas.height) {
-    //y = canvas.height - r;
+    y = canvas.height - r;
     vy = -vy;
   }
   if (y - r < 0) {
-    //y = r;
+    y = r;
     vy = -vy;
   }
 }
