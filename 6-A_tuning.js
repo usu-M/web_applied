@@ -3,11 +3,11 @@ const ctx = canvas.getContext("2d");
 
 // 調整する数（ここだけを変えて試す）
 const CONFIG = {
-  GRAVITY: 2000,
-  JUMP_SPEED: 700,
-  MOVE_SPEED: 240,
-  MAX_JUMPS: 2,
-  FALL_GRAVITY_RATE: 2,
+  GRAVITY: 1000,          // 9.8 m/秒² × 20
+  JUMP_SPEED: 600,        // 3 m/秒 × 20
+  MOVE_SPEED: 700,       // 5 m/秒 × 20
+  MAX_JUMPS: 3,          // 現実では空中で跳べない
+  FALL_GRAVITY_RATE: 3,  // 現実では落ちるときも重力は同じ
 };
 
 const TARGET_HEIGHT = 64;   // 目印の線の高さ（床から64px＝キャラ2つ分）。ぶつからない
