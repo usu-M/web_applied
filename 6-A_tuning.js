@@ -8,11 +8,12 @@ const CONFIG = {
   MOVE_SPEED: 700,       // 5 m/秒 × 20
   MAX_JUMPS: 3,          // 現実では空中で跳べない
   FALL_GRAVITY_RATE: 3,  // 現実では落ちるときも重力は同じ
+  LAND_BOUNCE_SPEED: 120,
 };
 
 const TARGET_HEIGHT = 64;   // 目印の線の高さ（床から64px＝キャラ2つ分）。ぶつからない
 
-const player = { x: 80, y: 20, w: 32, h: 32, vy: 0, isGrounded: false, jumpsLeft: CONFIG.MAX_JUMPS };
+const player = { x: 80, y: 20, w: 32, h: 32, vy: 0, isGrounded: false, jumpsLeft: CONFIG.MAX_JUMPS, jumpedBySpace: false };
 const floor = { x: 0, y: 320, w: 640, h: 40 };
 
 const keys = {};
@@ -22,6 +23,7 @@ document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && player.jumpsLeft > 0) {
     player.vy = -CONFIG.JUMP_SPEED;
     player.jumpsLeft = player.jumpsLeft - 1;
+    player.jumpedBySpace = true;
   }
 });
 document.addEventListener("keyup", (e) => {
@@ -31,9 +33,15 @@ document.addEventListener("keyup", (e) => {
 function collideWithFloor() {
   if (player.y + player.h > floor.y) {
     player.y = floor.y - player.h;
-    player.vy = 0;
+
+    // 空中から着地した瞬間だけ跳ねる
+    if (!player.isGrounded && player.jumpedBySpace) {
+      player.vy = -CONFIG.LAND_BOUNCE_SPEED;
+      player.jumpedBySpace = false;
+    }
+
     player.isGrounded = true;
-    player.jumpsLeft = CONFIG.MAX_JUMPS;   // 着地したら、跳べる回数を元に戻す
+    player.jumpsLeft = CONFIG.MAX_JUMPS;
   } else {
     player.isGrounded = false;
   }
