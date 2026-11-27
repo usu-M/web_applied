@@ -1,5 +1,3 @@
-// ステージ：画面（canvas）と床
-
 const canvas = document.getElementById("stage");
 const ctx = canvas.getContext("2d");
 
